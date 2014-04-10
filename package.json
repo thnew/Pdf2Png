@@ -1,11 +1,12 @@
 {
 	"name":			"pdf2png",
-	"version":		"1.0.3",
+	"version":		"1.0.5",
 	"description":	"Takes a PDF-document and converts and delivers a PNG",
 	"engine":		"node >= 0.6.0",
 	"main":			"./lib/pdf2png.js",
-	"devDependencies": {
-        "tmp":	"0.0.23"
+	"dependencies": {
+        "tmp":			"0.0.23",
+        "filesource":	"latest"
 	},
 	"repository" :
 	{ 
