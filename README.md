@@ -14,23 +14,137 @@ If you want to use it with linux, you may replace the ghostscript-executable wit
 Or you install ghostscript for linux.
 http://www.ghostscript.com/
 
-Easy example that converts a simple pdf to a png and saves it
+here some examples how to use:
 
 ```javascript
-// Create
-var sem = require('semaphore')(capacity);
+// Most simple example
+pdf2png.convert(__dirname + "/example.pdf", function(resp){
+	if(!resp.success)
+	{
+		console.log("Something went wrong: " + resp.error);
+		
+		return;
+	}
+	
+	console.log("Yayy the pdf got converted, now I'm gonna save it!");
+	
+	fs.writeFile("test/example_simple.png", resp.data, function(err) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log("The file was saved!");
+		}
+	});
+});
 
-// Take
-sem.take(fn[, n=1])
-sem.take(n, fn)
+// Example that returns a path
+pdf2png.convert(__dirname + "/example.pdf", { returnFilePath: true }, function(resp){
+	if(!resp.success)
+	{
+		console.log("Something went wrong: " + resp.error);
+		
+		return;
+	}
+	
+	console.log("Yayy the pdf got converted, now I'm gonna save it!");
+	
+	var img = fs.readFileSync(resp.data);
+	
+	fs.writeFile("test/example_that_returns_a_path.png", img, function(err) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log("The file was saved!");
+		}
+	}); 
+});
 
-// Leave
-sem.leave([n])
+// Example with lower quality
+pdf2png.convert(__dirname + "/example.pdf", { quality: 50 }, function(resp){
+	if(!resp.success)
+	{
+		console.log("Something went wrong: " + resp.error);
+		
+		return;
+	}
+	
+	console.log("Yayy the pdf got converted, now I'm gonna save it!");
+	
+	fs.writeFile("test/example_with_lower_quality.png", resp.data, function(err) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log("The file was saved!");
+		}
+	}); 
+});
+
+// Example with higher quality
+pdf2png.convert(__dirname + "/example.pdf", { quality: 200 }, function(resp){
+	if(!resp.success)
+	{
+		console.log("Something went wrong: " + resp.error);
+		
+		return;
+	}
+	
+	console.log("Yayy the pdf got converted, now I'm gonna save it!");
+	
+	fs.writeFile("test/example_with_higher_quality.png", resp.data, function(err) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log("The file was saved!");
+		}
+	}); 
+});
+
+// Example using a local ghostscript installation
+pdf2png.convert(__dirname + "/example.pdf", { useLocalGhostscript: true }, function(resp){
+	if(!resp.success)
+	{
+		console.log("Something went wrong: " + resp.error);
+		
+		return;
+	}
+	
+	console.log("Yayy the pdf got converted, now I'm gonna save it!");
+	
+	fs.writeFile("test/example_simple.png", resp.data, function(err) {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			console.log("The file was saved!");
+		}
+	}); 
+});
+```
+
+If an error like this appears:
+Something went wrong: Error converting pdf to png: Error: Command failed: 'gs' is not recognized as an internal or external command, operable program or batch file.
+
+Maybe you have the node file you execute in a subfolder and Pdf2Png doesn't set  the path to ghostscript correctly anymore.
+You can rewrite the path to the executable by setting "pdf2png.ghostscriptPath".
+Look at the following example of a script, being in the subfolder /lib.
+It first detects the project-root folder and then builds the absolute path to the ghostscript folder.
+
+```javascript
+var projectPath = __dirname.split("\\");
+projectPath.pop();
+projectPath = projectPath.join("\\");
+
+var gsPath = projectPath + "\\executables\\ghostScript";
+
+// Rewrite the ghostscript path
+pdf2png.ghostscriptPath = gsPath;
 ```
 
 Options:
-	ghostscriptPath: bool
-	
 	useLocalGhostscript: bool
 		if true, 
 	
