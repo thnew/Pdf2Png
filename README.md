@@ -145,13 +145,14 @@ pdf2png.ghostscriptPath = gsPath;
 ```
 
 Options:
-	useLocalGhostscript: bool
-		if true, 
-	
-	returnFilePath: bool
-		If you set this true, the module won't return you file-data, it will return you a path to a temporary file instead, containing the image.
-		Don't forget to remove this temporary file.
-		
-	quality
-		default: 100
-		can be higher and lower, play with it
+bool useLocalGhostscript
+	If true, the moudle won't set an envirponment attribute to the ghostscript executable.
+	Set this true if you want to use an own local ghostscript installation
+
+bool returnFilePath
+	If you set this true, the module won't return you file-data, it will return you a path to a temporary file instead, containing the image.
+	Don't forget to remove this temporary file.
+
+int quality [ = 100]
+	The quality of the PNG
+	Can be higher and lower, play with it
