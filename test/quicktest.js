@@ -11,7 +11,7 @@ var gsPath = projectPath + "\\executables\\ghostScript";
 pdf2png.ghostscriptPath = gsPath;
 
 // Most simple example
-pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath }, function(resp){
+pdf2png.convert(__dirname + "/example.pdf", function(resp){
 	if(!resp.success)
 	{
 		console.log("Something went wrong: " + resp.error);
@@ -32,7 +32,7 @@ pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath }, functio
 });
 
 // Example that returns a path
-pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath, returnFilePath: true }, function(resp){
+pdf2png.convert(__dirname + "/example.pdf", { returnFilePath: true }, function(resp){
 	if(!resp.success)
 	{
 		console.log("Something went wrong: " + resp.error);
@@ -55,7 +55,7 @@ pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath, returnFil
 });
 
 // Example with lower quality
-pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath, quality: 50 }, function(resp){
+pdf2png.convert(__dirname + "/example.pdf", { quality: 50 }, function(resp){
 	if(!resp.success)
 	{
 		console.log("Something went wrong: " + resp.error);
@@ -76,7 +76,7 @@ pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath, quality: 
 });
 
 // Example with higher quality
-pdf2png.convert(__dirname + "/example.pdf", { ghostscriptPath: gsPath, quality: 200 }, function(resp){
+pdf2png.convert(__dirname + "/example.pdf", { quality: 200 }, function(resp){
 	if(!resp.success)
 	{
 		console.log("Something went wrong: " + resp.error);
