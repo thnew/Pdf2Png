@@ -1,0 +1,11 @@
+{
+	"name":			"Pdf2Png",
+	"version":		"1.0.0",
+	"description":	"Takes a PDF-document and converts and delivers a PNG",
+	"engine":		"node >= 0.6.0",
+	"main":			"./lib/pdf2png.js",
+	"devDependencies": {
+        "tmp":	"0.0.23"
+	},
+	"homepage": "https://github.com/thnew/Pdf2Png"
+}
