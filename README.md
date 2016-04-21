@@ -2,7 +2,9 @@ pdf2png.js
 ============
 
 Install:
-npm install pdf2png
+npm install pdf2png-mp2
+
+This is a fork of an exsiitn module known as pdf2png-mp.  This update allows filenames with spaces to be processed.
 
 This project uses ghostscript, but there's no need to install it (if you use windows).
 If you want the module to use a local installation of ghostscript, set the option useLocalGhostscript true.
